@@ -6,3 +6,4 @@ spider_discuss_HK
 1. 替换cookie：在文件utils里把cookie换成自己登陆discussHK
 2. 本程序包含断点续爬功能，如果想重爬，需要删除./data/state.pkl文件
 3. 可以打开文件spider.py修改多线程数，等超参
+4. 纯文本爬虫选择 spider_pure_text_version.py
