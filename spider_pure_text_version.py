@@ -39,9 +39,10 @@ if __name__ == "__main__":
             fail_num, visited_link_pool, sum_id, current_text_lst, all_tokens = utils.load_state(state_full_name)
 
     while on_look_link_pool:
-        if (os.path.exists(state_full_name)):
-            sum_text_num, current_text_num, file_counter, on_look_link_pool, \
-                fail_num, visited_link_pool, sum_id, current_text_lst, all_tokens = utils.load_state(state_full_name)
+        if (sum_id % save_state_step == 0):
+            if (os.path.exists(state_full_name)):
+                sum_text_num, current_text_num, file_counter, on_look_link_pool, \
+                    fail_num, visited_link_pool, sum_id, current_text_lst, all_tokens = utils.load_state(state_full_name)
 
         tq.update(1)
         tq.set_postfix(
@@ -104,12 +105,12 @@ if __name__ == "__main__":
                 current_text_num = 0
                 file_counter += 1
 
-        sum_id += 1
         if (sum_id % save_state_step == 0):
             print("保存状态")
             state = [sum_text_num, current_text_num, file_counter, on_look_link_pool,
                      fail_num, visited_link_pool, sum_id, current_text_lst,all_tokens]
             state_full_name = utils.save_state(state, state_path)
+        sum_id += 1
 
     state = [sum_text_num, current_text_num, file_counter, on_look_link_pool,
              fail_num, visited_link_pool, sum_id, current_text_lst,all_tokens]
